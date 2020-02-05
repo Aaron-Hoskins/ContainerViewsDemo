@@ -1,0 +1,59 @@
+Other Notes:
+    - If an activity goes unresponsive for more than 5 seconds of a Broadcast Reciever does not
+        finish reception of broadcast in 10 seconds, the system will fire off an ANR
+    - ANR = Application Non Responsive
+
+    -lateinit vs lazy initialization
+        - lateinit is used for vars
+            - to check if initialization has occurred you can use the following code:
+                if(::varName.isInitialized){}
+        - lazy initialization is used by vals
+        - lateinit is a promise from the developed that the var will be initialized before use
+        - lazy initialization requires that the initialization code is supplied but not not defined
+
+Container Views
+- What is a container view?
+    - A container view is a listing view in mobile dev that contain similar
+        data sets and visual views
+- In android we have 2 different types
+    - ListView
+        - This is the original container for android
+        - Uses Eager loading of items
+             - Loads all items in the list at the same time
+        - Generally, uses an array adapter to control the rendering and population
+            of the data in the listView
+        - Only allows for vertical scrolling by default
+        - ItemClickListener is supplied by default
+        - User defines what design pattern to use to handle views.
+
+   - RecyclerView
+        - Optimized form of list view
+        - Newer
+        - Uses LAZY loading of items
+            - Will only render enough items to fit on screen + 2 items top or bottom of current place in list
+        - RecyclerView uses a RecyclerView Adapter
+            - Parts of the Recycler View Adapter
+                - 1 internal call
+                    - ViewHolder
+                        - Design pattern
+                        - It holds the group of views to be used with that item
+                - 3 Functions that MUST be overriden
+                    - onCreateViewHolder
+                        - Creates the item and renders it into memory
+                    - onBindViewHolder
+                        - Binds that view holder to the list
+                        - We will populate data to the item
+                    - getItemCount
+                        - Keeps track of how many items are in the list
+                - Uses LAYOUT MANAGERS to decide how swiping is going to happen and how the render items
+                    - 3 Types
+                        - Vertical
+                        - Horizontal
+                        - Grid
+                - We can also customize how each item is separated in the list
+                    - ItemDecorators
+                        - Default
+                        - Can make custom as well
+                - Does not include an ItemClickListener by default
+                - Swiping and other gestures for the RecyclerView items can be controlled and accessed
+                    via the item touch helper
